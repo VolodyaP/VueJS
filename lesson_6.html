@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+
+</head>
+<body>
+
+<div id="app">
+    <div style="border: 1px solid #ccc;text-align: center">
+        <div v-for="plan in plans">
+            <plan :subject="plan" :active.sync="active"></plan>
+        </div>
+    </div>
+    <pre>{{ $data | json }}</pre>
+</div>
+
+<template id="plan-template">
+    <div>
+        <span>{{ subject.name }}</span>
+        <span>{{ subject.price }}</span>
+        <button v-on:click="setActivePlan">Submit</button>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+    Vue.component('plan', {
+        template: '#plan-template',
+        props: ['subject', 'active'],
+        methods: {
+            setActivePlan: function() {
+                console.log(this.active);
+                this.active = this
+            }
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            plans: [
+                { name: 'Enterprise'    , price: 100 },
+                { name: 'Pro'           , price: 50 },
+                { name: 'Personal'      , price: 10 },
+                { name: 'Free'          , price: 0 }
+            ],
+            active: {}
+        }
+    })
+
+</script>
+</body>
+</html>

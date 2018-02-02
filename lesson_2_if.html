@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+
+</head>
+<body>
+
+<div id="app">
+    <form>
+        <span class="error" v-show="!message">
+            You must enter the message!
+        </span>
+        <div>
+            <textarea v-model="message"></textarea>
+        </div>
+        <button type="submit" v-if="message">
+            Send Message
+        </button>
+    </form>
+    <pre>{{ $data | json }}</pre>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+    new Vue({
+        el   : '#app',
+        data : {
+            message: ''
+        }
+    });
+</script>
+</body>
+</html>

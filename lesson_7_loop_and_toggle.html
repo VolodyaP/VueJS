@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+<div id="less7">
+    <ul>
+        <li :class="{'completed': task.completed }"
+            v-for="task in tasks"
+            @click="done(task)">
+                {{ task.body }}
+        </li>
+    </ul>
+    <pre>{{ $data | json }}</pre>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script src="script.js"></script>
+</body>
+</html>

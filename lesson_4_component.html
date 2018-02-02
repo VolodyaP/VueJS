@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+
+</head>
+<body>
+
+<div id="app">
+   <simple-counter subject="Likes"></simple-counter>
+   <simple-counter subject="Dislikes"></simple-counter>
+
+
+    <pre>{{ $data | json }}</pre>
+</div>
+
+<template id="template">
+    <div>
+        <h1> {{ subject }} </h1>
+        <button v-on:click="counter += 1">{{ counter }}</button>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+
+    var data = { counter: 0 }
+
+    Vue.component('simple-counter', {
+        template: '#template',
+        props: ['subject'],
+        // технически data является функцией, так что Vue
+        // не будет жаловаться, но при каждом вызове эта функция
+        // возвращает ссылку на один и тот же внешний объект
+        data: function () {
+            return {
+                counter: 0
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app'
+    })
+
+
+</script>
+</body>
+</html>

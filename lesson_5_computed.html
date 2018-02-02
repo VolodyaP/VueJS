@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+
+</head>
+<body>
+
+<div id="app">
+    <div style="border: 1px solid #ccc;text-align: center">
+        <p>{{fullName }} Skill: {{skill}}</p>
+
+
+        <input type="text" placeholder="First Name" v-model="firstName">
+        <input type="text" placeholder="Last Name" v-model="lastName">
+        <input type="text" v-model="point">
+    </div>
+
+
+    <pre>{{ $data | json }}</pre>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            point: 100,
+            firstName: 'Volodymyr',
+            lastName: 'Panchyshyn',
+            fullName: 'Volodymyr Panchysyn'
+        },
+        computed: {
+            skill: function() {
+                var result = '';
+                if(this.point > 90)
+                    result = 'Senionr';
+                else if(this.point >60)
+                    result = 'Intermid';
+                else
+                    result = 'Galimiy Gun';
+                return result;
+            }
+        },
+        watch: {
+            firstName: function(first) {
+                this.fullName = first + ' ' + this.lastName;
+            },
+            lastName: function(last) {
+                this.fullName = this.firstName + ' ' + last;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
